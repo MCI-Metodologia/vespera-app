@@ -3,66 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VESPERA - Serie Orión</title>
+    <title>VESPERA - MCI</title>
     <style>
-        body { background-color: #FFFDD0; font-family: 'Segoe UI', sans-serif; margin: 0; color: #4A4A4A; text-align: center; }
-        header { background: linear-gradient(to right, #1E90FF, #87CEFA); padding: 20px; color: white; }
-        .logo-top { height: 60px; margin-bottom: 10px; }
-        .avatar-container { margin: 20px auto; width: 180px; height: 180px; border-radius: 50%; border: 5px solid #B8860B; overflow: hidden; background: white; }
-        .avatar-img { width: 100%; height: 100%; object-fit: cover; }
-        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; max-width: 500px; margin: auto; }
-        .btn-menu { border: none; border-radius: 15px; padding: 20px; color: white; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; }
-        .blue { background-color: #4facfe; }
-        .green { background-color: #00C2C2; }
-        .yellow { background-color: #f6d365; color: #4A4A4A; }
-        .gym-section { background: white; margin: 20px; padding: 20px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .footer-logo { height: 50px; margin-top: 20px; }
+        :root { --font-size: 18px; }
+        body { background-color: #FFFDD0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; color: #4A4A4A; font-size: var(--font-size); }
+        
+        /* HEADER MEJORADO */
+        header { background: linear-gradient(to bottom, #1E90FF, #104E8B); padding: 25px 10px; color: white; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .logo-main { max-width: 250px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3)); }
+        .subtitle { font-size: 0.9em; opacity: 0.9; font-weight: 300; letter-spacing: 1px; }
+        
+        /* CONTROLES DE ACCESIBILIDAD */
+        .accessibility { position: absolute; top: 10px; right: 10px; }
+        .btn-acc { background: rgba(255,255,255,0.2); border: 1px solid white; color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-left: 5px; }
+
+        /* SECCIÓN BIENVENIDA */
+        .welcome-section { padding: 30px 20px; text-align: center; }
+        .clara-circle { width: 200px; height: 200px; border-radius: 50%; border: 6px solid #28a745; margin: 0 auto 20px; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.1); background: white; }
+        .clara-circle img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* BOTONES GRANDES (ESTILO SILVER) */
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .btn-silver { border: none; border-radius: 20px; padding: 30px 10px; color: white; font-weight: bold; font-size: 1.2em; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.15); transition: transform 0.2s; }
+        .btn-silver:active { transform: scale(0.95); }
+        .azul { background-color: #007bff; }
+        .verde { background-color: #28a745; }
+        .amarillo { background-color: #ffc107; color: #4A4A4A; }
+        
+        footer { background: #fff; padding: 30px; margin-top: 40px; border-top: 2px solid #eee; }
+        .logo-mci { height: 60px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="logo_vespera.png" alt="VESPERA" class="logo-top">
-    <div>Serie Orión · MCI</div>
+    <div class="accessibility">
+        <button class="btn-acc" onclick="changeFont(-2)">A-</button>
+        <button class="btn-acc" onclick="changeFont(2)">A+</button>
+    </div>
+    <img src="logo_vespera.png" alt="VESPERA" class="logo-main">
+    <div class="subtitle">Serie Orión · M.C.I.</div>
 </header>
 
-<div class="avatar-container">
-    <img src="avatar_clara.png" alt="Clara" class="avatar-img">
+<div class="welcome-section">
+    <div class="clara-circle">
+        <img src="avatar_clara.png" alt="Clara">
+    </div>
+    <h1 id="greeting">¡Cargando...</h1>
+    <p><i>Powered by Metodología de Conciencia Integral</i></p>
 </div>
 
-<h1>¡Bienvenida, Lily!</h1>
-<p>Tu mente es tu mayor activo</p>
-<p>✨ Powered by Metodología MCI ✨</p>
-
-<div class="gym-section">
-    <h3>🧠 Gimnasio Mental</h3>
-    <p id="ejercicio-texto">Presiona el botón para iniciar</p>
-    <button class="btn-menu green" onclick="nuevoEjercicio()">Ejercitar mente</button>
-</div>
-
-<div class="grid-container">
-    <button class="btn-menu blue">Conversemos</button>
-    <button class="btn-menu blue">Mi Diario</button>
-    <button class="btn-menu green">Cartelera Diaria</button>
-    <button class="btn-menu yellow">Momento de Luz</button>
+<div class="menu-grid">
+    <button class="btn-silver azul" onclick="alert('Iniciando conversación...')">Conversemos</button>
+    <button class="btn-silver azul" onclick="alert('Abriendo Diario...')">Mi Diario</button>
+    <button class="btn-silver verde" onclick="alert('Abriendo Cartelera...')">Cartelera Diaria</button>
+    <button class="btn-silver amarillo" onclick="alert('Tu Momento de Luz...')">Momento de Luz</button>
 </div>
 
 <footer>
-    <img src="logo_mci.png" alt="MCI" class="footer-logo">
-    <p>© 2026 MCI METODOLOGÍA DE CONCIENCIA INTEGRAL</p>
+    <img src="logo_mci.png" alt="MCI" class="logo-mci">
+    <p><strong>MCI METODOLOGÍA DE CONCIENCIA INTEGRAL</strong></p>
+    <p>© 2026 Serie Orión - Tu acompañamiento de cada día</p>
 </footer>
 
 <script>
-    const ejercicios = [
-        "Respira profundo 3 veces y visualiza tu meta de hoy.",
-        "Escribe 3 cosas por las que estás agradecida hoy.",
-        "Observa un objeto cercano y detalla 5 cualidades de él.",
-        "Cierra los ojos y escucha 3 sonidos diferentes a tu alrededor."
-    ];
+    // Saludo según la hora
+    const now = new Date();
+    const hour = now.getHours();
+    let text = "¡Buen día, Lily!";
+    if (hour >= 13) text = "¡Buenas tardes, Lily!";
+    if (hour >= 20) text = "¡Buenas noches, Lily!";
+    document.getElementById('greeting').innerText = text;
 
-    function nuevoEjercicio() {
-        const azar = Math.floor(Math.random() * ejercicios.length);
-        document.getElementById('ejercicio-texto').innerText = ejercicios[azar];
+    // Control de tamaño de letra
+    function changeFont(delta) {
+        const root = document.documentElement;
+        const currentSize = parseInt(getComputedStyle(root).getPropertyValue('--font-size'));
+        root.style.setProperty('--font-size', (currentSize + delta) + 'px');
     }
 </script>
 
