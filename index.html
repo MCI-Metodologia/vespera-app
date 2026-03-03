@@ -3,83 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VESPERA - MCI</title>
+    <title>VESPERA - Plataforma MCI</title>
     <style>
-        :root { --font-size: 18px; }
-        body { background-color: #FFFDD0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; color: #4A4A4A; font-size: var(--font-size); }
+        :root { --font-size: 20px; }
+        body { background-color: #FFFDD0; font-family: Arial, sans-serif; margin: 0; color: #333; font-size: var(--font-size); text-align: center; line-height: 1.4; }
         
-        /* HEADER MEJORADO */
-        header { background: linear-gradient(to bottom, #1E90FF, #104E8B); padding: 25px 10px; color: white; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-        .logo-main { max-width: 250px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3)); }
-        .subtitle { font-size: 0.9em; opacity: 0.9; font-weight: 300; letter-spacing: 1px; }
+        /* BLOQUE 1: HEADER Y ACCESIBILIDAD */
+        .acc-bar { background: #0d3b66; padding: 10px; text-align: right; }
+        .btn-acc { background: white; color: #0d3b66; border: none; padding: 8px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-left: 10px; }
         
-        /* CONTROLES DE ACCESIBILIDAD */
-        .accessibility { position: absolute; top: 10px; right: 10px; }
-        .btn-acc { background: rgba(255,255,255,0.2); border: 1px solid white; color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin-left: 5px; }
+        header { background: linear-gradient(180deg, #1E90FF 0%, #104E8B 100%); padding: 40px 20px; color: white; border-bottom: 5px solid #B8860B; }
+        .logo-top { max-width: 200px; height: auto; margin-bottom: 10px; }
+        .app-title { font-size: 2.5em; font-weight: bold; margin: 0; letter-spacing: 3px; }
+        .app-subtitle { font-size: 1em; opacity: 0.9; font-weight: bold; margin-top: 5px; }
 
-        /* SECCIÓN BIENVENIDA */
-        .welcome-section { padding: 30px 20px; text-align: center; }
-        .clara-circle { width: 200px; height: 200px; border-radius: 50%; border: 6px solid #28a745; margin: 0 auto 20px; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.1); background: white; }
+        /* BLOQUE 2: CLARA (CONEXIÓN ACTIVA) */
+        .clara-container { margin: 35px auto; position: relative; width: 220px; }
+        .clara-circle { width: 220px; height: 220px; border-radius: 50%; border: 8px solid #28a745; overflow: hidden; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
         .clara-circle img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* BOTONES GRANDES (ESTILO SILVER) */
-        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; max-width: 600px; margin: 0 auto; }
-        .btn-silver { border: none; border-radius: 20px; padding: 30px 10px; color: white; font-weight: bold; font-size: 1.2em; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.15); transition: transform 0.2s; }
-        .btn-silver:active { transform: scale(0.95); }
-        .azul { background-color: #007bff; }
-        .verde { background-color: #28a745; }
-        .amarillo { background-color: #ffc107; color: #4A4A4A; }
+        .welcome-text { padding: 0 20px; }
+        .welcome-text h2 { margin: 10px 0; font-size: 1.8em; }
+        .mci-tagline { color: #B8860B; font-weight: bold; font-style: italic; }
+
+        /* BLOQUE 3 Y 4: MENÚ DE ACCIÓN (ARES & PREMIUM) */
+        .menu-list { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 30px auto; padding: 0 20px; }
+        .btn-action { border: none; border-radius: 15px; padding: 25px; color: white; font-weight: bold; font-size: 1.2em; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; }
         
-        footer { background: #fff; padding: 30px; margin-top: 40px; border-top: 2px solid #eee; }
-        .logo-mci { height: 60px; margin-bottom: 10px; }
+        .blue { background-color: #007bff; }
+        .green { background-color: #28a745; }
+        
+        .premium-section { margin-top: 10px; padding: 20px; border: 3px solid #FFD700; border-radius: 25px; background: white; }
+        .gold { background: linear-gradient(to right, #B8860B, #FFD700); color: #333; width: 100%; }
+
+        /* BLOQUE 5: SEGURIDAD Y COMUNIDAD */
+        .medical-notice { background-color: #fff5f5; border: 2px solid #feb2b2; color: #c53030; padding: 25px; margin: 40px 20px; border-radius: 20px; text-align: left; font-size: 0.9em; }
+        
+        .btn-social { display: block; width: 90%; max-width: 450px; margin: 15px auto; padding: 18px; border-radius: 15px; border: none; color: white; font-weight: bold; cursor: pointer; font-size: 1em; }
+        .wa { background-color: #25D366; }
+        .ig { background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%); }
+
+        /* BLOQUE 6: FOOTER */
+        footer { background: white; padding: 50px 20px; margin-top: 60px; border-top: 4px solid #1E90FF; }
+        .footer-logo { height: 60px; margin-bottom: 15px; }
+        .footer-links { margin: 20px 0; font-size: 0.8em; }
+        .footer-links a { color: #007bff; text-decoration: none; margin: 0 10px; }
     </style>
 </head>
 <body>
 
+<div class="acc-bar">
+    <span style="color: white; font-size: 0.7em;">TAMAÑO DE LETRA: </span>
+    <button class="btn-acc" onclick="changeFont(-2)">A-</button>
+    <button class="btn-acc" onclick="changeFont(2)">A+</button>
+</div>
+
 <header>
-    <div class="accessibility">
-        <button class="btn-acc" onclick="changeFont(-2)">A-</button>
-        <button class="btn-acc" onclick="changeFont(2)">A+</button>
-    </div>
-    <img src="logo_vespera.png" alt="VESPERA" class="logo-main">
-    <div class="subtitle">Serie Orión · M.C.I.</div>
+    <img src="logo_vespera.png" alt="VESPERA LOGO" class="logo-top">
+    <h1 class="app-title">VESPERA</h1>
+    <div class="app-subtitle">SERIE ORIÓN · METODOLOGÍA M.C.I.</div>
 </header>
 
-<div class="welcome-section">
+<div class="clara-container">
     <div class="clara-circle">
         <img src="avatar_clara.png" alt="Clara">
     </div>
-    <h1 id="greeting">¡Cargando...</h1>
-    <p><i>Powered by Metodología de Conciencia Integral</i></p>
 </div>
 
-<div class="menu-grid">
-    <button class="btn-silver azul" onclick="alert('Iniciando conversación...')">Conversemos</button>
-    <button class="btn-silver azul" onclick="alert('Abriendo Diario...')">Mi Diario</button>
-    <button class="btn-silver verde" onclick="alert('Abriendo Cartelera...')">Cartelera Diaria</button>
-    <button class="btn-silver amarillo" onclick="alert('Tu Momento de Luz...')">Momento de Luz</button>
+<div class="welcome-text">
+    <h2 id="saludo">¡Hola, Lily!</h2>
+    <p class="mci-tagline">"Tu mente es tu mayor activo"</p>
+    <p>Acompañamiento diario personalizado</p>
 </div>
+
+<div class="menu-list">
+    <button class="btn-action blue" onclick="alert('Conectando con Clara...')">💬 CONVERSEMOS</button>
+    <button class="btn-action blue" onclick="alert('Abriendo Mi Diario...')">📖 MI DIARIO</button>
+    <button class="btn-action green" onclick="alert('Cargando Cartelera...')">🎯 CARTELERA DIARIA</button>
+
+    <div class="premium-section">
+        <p style="color: #B8860B; font-weight: bold; margin-bottom: 10px;">CATEGORÍA PREMIUM MCI</p>
+        <button class="btn-action gold" onclick="alert('Próximamente: Gimnasio Mental Avanzado')">🧠 GIMNASIO MENTAL</button>
+    </div>
+</div>
+
+<div class="medical-notice">
+    <b>⚠️ AVISO IMPORTANTE:</b><br>
+    Esta plataforma es una herramienta de estimulación cognitiva y acompañamiento emocional. <b>No reemplaza diagnósticos ni tratamientos médicos profesionales.</b>
+</div>
+
+<button class="btn-social wa" onclick="shareApp()">📲 COMPARTIR CON UN AMIGO</button>
+<button class="btn-social ig" onclick="window.location.href='https://www.instagram.com/metodologia.mci?igsh=MTcweHRlZHYxZjdiYg=='">📸 INSTAGRAM MÉTODO MCI</button>
 
 <footer>
-    <img src="logo_mci.png" alt="MCI" class="logo-mci">
-    <p><strong>MCI METODOLOGÍA DE CONCIENCIA INTEGRAL</strong></p>
-    <p>© 2026 Serie Orión - Tu acompañamiento de cada día</p>
+    <img src="logo_mci.png" alt="MCI" class="footer-logo"><br>
+    <strong>MCI METODOLOGÍA DE CONCIENCIA INTEGRAL</strong><br>
+    <div class="footer-links">
+        <a href="#">Términos</a> | <a href="#">Privacidad</a> | <a href="#">Soporte</a>
+    </div>
+    <p>© 2026 Serie Orión · Tu bienestar es nuestra misión</p>
 </footer>
 
 <script>
-    // Saludo según la hora
-    const now = new Date();
-    const hour = now.getHours();
-    let text = "¡Buen día, Lily!";
-    if (hour >= 13) text = "¡Buenas tardes, Lily!";
-    if (hour >= 20) text = "¡Buenas noches, Lily!";
-    document.getElementById('greeting').innerText = text;
+    // Saludo según hora
+    const h = new Date().getHours();
+    let s = "¡Buen día, Lily!";
+    if (h >= 13) s = "¡Buenas tardes, Lily!";
+    if (h >= 20) s = "¡Buenas noches, Lily!";
+    document.getElementById('saludo').innerText = s;
 
-    // Control de tamaño de letra
-    function changeFont(delta) {
-        const root = document.documentElement;
-        const currentSize = parseInt(getComputedStyle(root).getPropertyValue('--font-size'));
-        root.style.setProperty('--font-size', (currentSize + delta) + 'px');
+    // Accesibilidad
+    function changeFont(d) {
+        const r = document.documentElement;
+        const s = parseInt(getComputedStyle(r).getPropertyValue('--font-size'));
+        r.style.setProperty('--font-size', (s + d) + 'px');
+    }
+
+    // Compartir WhatsApp
+    function shareApp() {
+        const text = "¡Hola! Te invito a probar Vespera, mi acompañamiento diario de la Serie Orión y MCI. Miralo acá: " + window.location.href;
+        window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text));
     }
 </script>
 
