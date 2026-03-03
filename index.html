@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VESPERA · Serie Orión · MCI</title>
+    <!-- Tipografía limpia y moderna (preparada para escalar) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..600&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET Y VARIABLES (ARQUITECTURA ESCALABLE) === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul-vibrante: #1E90FF;
+            --azul-cielo: #87CEFA;
+            --fondo-crema: #FFFDD0;
+            --gris-carbon: #4A4A4A;
+            --turquesa-acción: #00C2C2;
+            --dorado-detalle: #B8860B;
+            --dorado-borde: #D4AF37; /* un dorado más cálido para el avatar */
+            --blanco-puro: #FFFFFF;
+            --sombra-suave: 0 12px 28px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.03);
+            --sombra-modal: 0 20px 35px -8px rgba(0,0,0,0.2);
+            --border-radius-card: 28px;
+            --transition-estandar: all 0.25s ease;
+        }
+
+        body {
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            background-color: var(--fondo-crema);
+            color: var(--gris-carbon);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        /* === HEADER CON DEGRADADO === */
+        .app-header {
+            background: linear-gradient(135deg, var(--azul-vibrante), var(--azul-cielo));
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-principal {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        /* Placeholder visual mientras no existe el archivo (solo referencia) */
+        .logo-placeholder {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: white;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* === MAIN: FONDO CREMA Y CONTENIDO CENTRADO === */
+        .app-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .home-section {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* AVATAR CIRCULAR CON BORDE DORADO */
+        .avatar-container {
+            margin-bottom: 1.8rem;
+        }
+
+        .avatar-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--dorado-borde);
+            box-shadow: 0 12px 22px -8px rgba(184, 134, 11, 0.25);
+            background-color: #e0dbc6; /* tono neutro mientras se carga la imagen */
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* texto principal */
+        .saludo {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            color: var(--gris-carbon);
+        }
+
+        .saludo span {
+            font-weight: 600;
+            color: #1E3A5F; /* un azul profundo para dar énfasis */
+        }
+
+        .powered {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px dashed rgba(74, 74, 74, 0.15);
+            padding-bottom: 1.8rem;
+            display: inline-block;
+        }
+
+        /* === GIMNASIO MENTAL === */
+        .gimnasio-card {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: var(--border-radius-card);
+            padding: 2rem 2rem 2.5rem;
+            box-shadow: var(--sombra-suave);
+            margin: 1.5rem 0 2.2rem;
+            border: 1px solid rgba(255,255,255,0.7);
+        }
+
+        .gimnasio-card h2 {
+            font-weight: 500;
+            font-size: 1.8rem;
+            color: #1E3A5F;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitulo-mci {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--dorado-detalle);
+            margin-bottom: 2rem;
+        }
+
+        .boton-turquesa {
+            background-color: var(--turquesa-acción);
+            border: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.25rem;
+            padding: 0.9rem 2.5rem;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(0, 194, 194, 0.3);
+            transition: var(--transition-estandar);
+            border: 1px solid rgba(255,255,255,0.3);
+            letter-spacing: 0.5px;
+            margin-bottom: 2rem;
+        }
+
+        .boton-turquesa:hover {
+            background-color: #00a0a0;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -6px #00c2c2;
+        }
+
+        .actividad-container {
+            background: rgba(255,255,255,0.7);
+            border-radius: 48px;
+            padding: 1.4rem 2rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #1E3A5F;
+            border-left: 6px solid var(--dorado-detalle);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+            min-height: 5rem;
+            word-break: break-word;
+        }
+
+        #actividadMostrada {
+            transition: opacity 0.2s;
+        }
+
+        /* === FOOTER FIJO CON LOGO Y COPY === */
+        .app-footer {
+            background-color: rgba(30, 144, 255, 0.08);
+            backdrop-filter: blur(4px);
+            border-top: 1px solid rgba(184, 134, 11, 0.2);
+            padding: 1rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-mci {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-mci-placeholder {
+            background: var(--gris-carbon);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            font-size: 0.95rem;
+            color: #2c3e50;
+            font-weight: 400;
+        }
+
+        /* === MODAL PREMIUM (ELEGANTE, DORADO) === */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s;
+        }
+
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-contenido {
+            background: #fefcf0; /* crema más luminoso */
+            max-width: 450px;
+            width: 90%;
+            border-radius: 32px;
+            box-shadow: var(--sombra-modal), 0 0 0 2px var(--dorado-detalle);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid var(--dorado-borde);
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        .modal-overlay.active .modal-contenido {
+            transform: scale(1);
+        }
+
+        .modal-contenido h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--dorado-detalle);
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-contenido .dorado-line {
+            width: 70px;
+            height: 3px;
+            background: var(--dorado-detalle);
+            margin: 0.8rem auto 1.5rem;
+            border-radius: 3px;
+        }
+
+        .modal-contenido p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--gris-carbon);
+        }
+
+        .boton-dorado {
+            background: transparent;
+            border: 2px solid var(--dorado-detalle);
+            color: var(--dorado-detalle);
+            font-weight: 600;
+            padding: 0.8rem 2.2rem;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition-estandar);
+            margin: 0.3rem;
+        }
+
+        .boton-dorado:hover {
+            background: var(--dorado-detalle);
+            color: white;
+            border-color: var(--dorado-detalle);
+        }
+
+        .boton-dorado.secundario {
+            border-color: var(--gris-carbon);
+            color: var(--gris-carbon);
+        }
+        .boton-dorado.secundario:hover {
+            background: var(--gris-carbon);
+            color: white;
+            border-color: var(--gris-carbon);
+        }
+
+        .close-modal {
+            margin-top: 1.5rem;
+            background: none;
+            border: none;
+            text-decoration: underline;
+            color: #888;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* BOTÓN QUE ABRE MODAL (PREMIUM) */
+        .premium-trigger {
+            background: none;
+            border: 2px solid var(--dorado-detalle);
+            color: var(--dorado-detalle);
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition-estandar);
+            margin-top: 1rem;
+        }
+
+        .premium-trigger:hover {
+            background: var(--dorado-detalle);
+            color: white;
+        }
+
+        /* animación sencilla */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* responsive */
+        @media (max-width: 550px) {
+            .saludo { font-size: 1.6rem; }
+            .avatar-img { width: 140px; height: 140px; }
+            .header-container { flex-direction: column; gap: 0.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER con degradado azul y logo_vespera.png (simulado) -->
+    <header class="app-header">
+        <div class="header-container">
+            <!-- logo_vespera.png (simulación visual con un div con estilo, pero respetando la petición "archivo logo_vespera.png" -->
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='50' viewBox='0 0 180 50'%3E%3Crect width='180' height='50' fill='rgba(255,255,255,0.2)'/%3E%3Ctext x='20' y='35' font-family='Inter, Arial' font-size='22' fill='white' font-weight='600'%3EVESPERA%3C/text%3E%3C/svg%3E"
+                 alt="Vespera Logo" class="logo-principal" 
+                 onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%2250%22%20viewBox%3D%220%200%20180%2050%22%3E%3Crect%20width%3D%22180%22%20height%3D%2250%22%20fill%3D%22%231E90FF%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22Inter%2C%20Arial%22%20font-size%3D%2222%22%20fill%3D%22white%22%20font-weight%3D%22600%22%3Elogo_vespera%3C%2Ftext%3E%3C%2Fsvg%3E';">
+            <!-- Elemento adicional solo para mantener el diseño, pero el logo ya está a la izquierda -->
+            <div style="color: white; font-weight: 300; font-size: 0.95rem;">Serie Orión · MCI</div>
+        </div>
+    </header>
+
+    <!-- MAIN: CUERPO CREMA, HOME CENTRADO -->
+    <main class="app-main">
+        <section class="home-section">
+            <!-- AVATAR CIRCULAR (avatar_clara.png) -->
+            <div class="avatar-container">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Ccircle cx='90' cy='90' r='88' fill='%23d8c99b' stroke='%23B8860B' stroke-width='4'/%3E%3Ccircle cx='90' cy='70' r='25' fill='%23EDC9A0'/%3E%3Ccircle cx='70' cy='60' r='4' fill='%23312e2b'/%3E%3Ccircle cx='110' cy='60' r='4' fill='%23312e2b'/%3E%3Cpath d='M70 100 Q90 120, 110 100' stroke='%2394552e' stroke-width='5' fill='none' stroke-linecap='round' /%3E%3C/svg%3E"
+                     alt="Avatar Clara" class="avatar-img"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%22180%22%20viewBox%3D%220%200%20180%20180%22%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%2290%22%20r%3D%2288%22%20fill%3D%22%23d4c39e%22%20stroke%3D%22%23D4AF37%22%20stroke-width%3D%224%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%22110%22%20font-family%3D%22Inter%22%20font-size%3D%2220%22%20fill%3D%22%23312e2b%22%3Eavatar%3C%2Ftext%3E%3C%2Fsvg%3E';">
+            </div>
+
+            <!-- SALUDO Y POWERED -->
+            <h1 class="saludo">¡Bienvenida, <span>Lily</span>!<br>Tu mente es tu mayor activo</h1>
+            <div class="powered">✦ Powered by Metodología MCI ✦</div>
+
+            <!-- GIMNASIO MENTAL: BOTÓN TURQUESA + ACTIVIDAD ALEATORIA -->
+            <div class="gimnasio-card">
+                <h2>🧠 Gimnasio Mental</h2>
+                <div class="subtitulo-mci">entrena hoy</div>
+                <button class="boton-turquesa" id="activarGimnasio">Ejercitar mente</button>
+                <div class="actividad-container" id="actividadMostrada">
+                    <span style="opacity: 0.6;">Presiona el botón</span>
+                </div>
+            </div>
+
+            <!-- SECCIÓN PREMIUM (TRIGGER DEL MODAL) -->
+            <button class="premium-trigger" id="abrirModalPremium">✨ Descubre Premium ✨</button>
+        </section>
+    </main>
+
+    <!-- FOOTER: LOGO MCI y COPY -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <!-- logo_mci.png (simulación elegante) -->
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40' viewBox='0 0 120 40'%3E%3Crect width='120' height='40' fill='%23333333' rx='12'/%3E%3Ctext x='15' y='27' font-family='Inter, Arial' font-size='18' fill='%23F0E68C' font-weight='600'%3EMCI%3C/text%3E%3C/svg%3E"
+                     alt="Logo MCI" class="logo-mci"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%2240%22%20viewBox%3D%220%200%20120%2040%22%3E%3Crect%20width%3D%22120%22%20height%3D%2240%22%20fill%3D%22%23222222%22%20rx%3D%2212%22%2F%3E%3Ctext%20x%3D%2220%22%20y%3D%2227%22%20font-family%3D%22Inter%22%20font-size%3D%2218%22%20fill%3D%22%23D4AF37%22%20font-weight%3D%22600%22%3Elogo_mci%3C%2Ftext%3E%3C%2Fsvg%3E';">
+            </div>
+            <div class="copyright">© 2026 Serie Orión</div>
+        </div>
+    </footer>
+
+    <!-- MODAL PREMIUM (ELEGANTE, DORADO) -->
+    <div class="modal-overlay" id="modalPremium">
+        <div class="modal-contenido">
+            <h3>🌟 VESPERA Premium</h3>
+            <div class="dorado-line"></div>
+            <p>Desbloquea todo tu potencial con la Serie Orión. <br><strong>Módulos avanzados MCI, IA adaptativa y métricas profundas.</strong></p>
+            <button class="boton-dorado" id="suscribirseSimu">Suscribirse</button>
+            <button class="boton-dorado secundario" id="cerrarModalBtn">Ahora no</button>
+            <div><button class="close-modal" id="cerrarModalCerrar">Cerrar</button></div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT MODULAR Y PREPARADO PARA ESCALAR (IA futura) -->
+    <script>
+        (function(){
+            "use strict";
+
+            // -------------------- MÓDULO GIMNASIO MENTAL --------------------
+            const ACTIVIDADES_PRUEBA = [
+                "🧩 Resolver un rompecabezas lógico (5 min)",
+                "🔢 Calcular mentalmente: 24 × 17",
+                "📖 Leer un poema y buscar su significado",
+                "🌀 Ejercicio de visualización creativa",
+                "🎭 Recordar los nombres de 5 personajes históricos",
+                "🗺️ Trazar una ruta mental en un mapa imaginario",
+                "🎼 Identificar melodías sin título",
+                "♟️ Pensar una jugada de ajedrez alternativa"
+            ]; // 8 ejemplos para variedad
+
+            const actividadSpan = document.getElementById('actividadMostrada');
+            const botonGimnasio = document.getElementById('activarGimnasio');
+
+            function mostrarActividadAleatoria() {
+                if (!actividadSpan) return;
+                const randomIndex = Math.floor(Math.random() * ACTIVIDADES_PRUEBA.length);
+                const actividad = ACTIVIDADES_PRUEBA[randomIndex];
+                actividadSpan.innerHTML = `<span style="font-weight: 400;">🧠</span> ${actividad}`;
+                // pequeña animación de feedback
+                actividadSpan.style.opacity = '0.7';
+                setTimeout(() => { actividadSpan.style.opacity = '1'; }, 50);
+            }
+
+            if (botonGimnasio) {
+                botonGimnasio.addEventListener('click', mostrarActividadAleatoria);
+            }
+
+            // -------------------- MÓDULO PREMIUM (MODAL) --------------------
+            const modal = document.getElementById('modalPremium');
+            const btnAbrirModal = document.getElementById('abrirModalPremium');
+            const btnCerrarModal = document.getElementById('cerrarModalBtn');
+            const btnCerrarCerrar = document.getElementById('cerrarModalCerrar');
+            const btnSuscribir = document.getElementById('suscribirseSimu');
+
+            // funciones modales
+            function abrirModal() {
+                if (modal) modal.classList.add('active');
+            }
+
+            function cerrarModal() {
+                if (modal) modal.classList.remove('active');
+            }
+
+            if (btnAbrirModal) btnAbrirModal.addEventListener('click', abrirModal);
+            if (btnCerrarModal) btnCerrarModal.addEventListener('click', cerrarModal);
+            if (btnCerrarCerrar) btnCerrarCerrar.addEventListener('click', cerrarModal);
+            if (btnSuscribir) btnSuscribir.addEventListener('click', function(e) {
+                alert('✨ ¡Gracias por tu interés! (demo - serie Orión)');
+                cerrarModal();
+            });
+
+            // Cerrar si se hace clic en el overlay (fondo)
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) cerrarModal();
+                });
+            }
+
+            // -------------------- MÓDULO DE SIMULACIÓN DE USUARIO NO PREMIUM (para que el modal tenga sentido) 
+            // Se podría conectar a un estado global en el futuro, por ahora el modal se abre siempre.
+            // El botón "Descubre Premium" ya hace la función.
+
+            // -------------------- INICIALIZACIÓN DE POSIBLES DATOS DE IA (estructura futura) --------------------
+            // dejamos un objeto global simulando un futuro store para IA
+            window.VESPERA = window.VESPERA || {
+                config: {
+                    version: 'Serie Orión · MCI',
+                    premium: false,  // Podríamos cambiar esto para condicionar el modal automático, pero respetamos botón.
+                    user: { name: 'Lily', avatar: 'avatar_clara.png' }
+                },
+                // Método dummy para futura integración con IA (por ejemplo recomendaciones)
+                recommendActivity: function() {
+                    return ACTIVIDADES_PRUEBA[Math.floor(Math.random() * ACTIVIDADES_PRUEBA.length)];
+                }
+            };
+
+            // Ejemplo de uso futuro: si quisiéramos que al cargar recomiende una actividad, podríamos llamar:
+            // if (actividadSpan) actividadSpan.innerText = '🤖 IA recomienda: ' + window.VESPERA.recommendActivity();
+            // Pero no lo hacemos para mantener el placeholder "Presiona el botón"
+        })();
+    </script>
+
+    <!-- (opcional) un pequeño estilo para el estado activo del modal ya está en CSS -->
+</body>
+</html>
