@@ -1,0 +1,23 @@
+{
+  "name": "VESPERA — Compañía Diaria +60",
+  "short_name": "VESPERA",
+  "description": "Tu compañía digital diaria para adultos mayores",
+  "start_url": "/vespera-app/",
+  "display": "standalone",
+  "background_color": "#1B6B3A",
+  "theme_color": "#1B6B3A",
+  "icons": [
+    {
+      "src": "logo_vespera.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo_vespera.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
